@@ -17,6 +17,7 @@ async function getTextEmbedding(text) {
     "Xenova/all-MiniLM-L6-v2"
   );
   const embedding = await textModel(text, { pooling: "mean", normalize: true });
+  
   return embedding.data; // Return as array
 }
 
@@ -66,6 +67,7 @@ async function findBestMatchingTask(
   let bestScore = -1;
 
   taskList.forEach((task, i) => {
+    console.log(i);
     const similarity = cosineSimilarity(predictedEmbedding, taskEmbeddings[i]);
     if (similarity > bestScore) {
       bestScore = similarity;
@@ -104,6 +106,6 @@ export default async function main() {
   }
   let taskList = await getTasksfromFile();
   let imageEmbedding = await getImageEmbedding();
-
-  findBestMatchingTask(imageEmbedding, taskList);
+  console.log(imageEmbedding)
+  // findBestMatchingTask(imageEmbedding, taskList);
 }

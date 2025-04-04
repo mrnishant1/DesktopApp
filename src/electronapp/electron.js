@@ -4,7 +4,7 @@ import { fileURLToPath } from 'url';
 import isDev from "./utils.js";
 import fs from 'fs';
 import main from "./workingModel.js";
-
+// import main_onnx from "./onnxModel.js";
 
 // Get __dirname equivalent
 const __filename = fileURLToPath(import.meta.url);
@@ -40,7 +40,6 @@ function createMainWindow() {
 }
 
 app.whenReady().then(() => {
-  console.log("Preload path:", path.join(__dirname, "preload.js"));
   createMainWindow();
 
   tray = new Tray(path.join(__dirname, "icon.png")); // Ensure correct path
